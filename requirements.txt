@@ -1,2 +1,6 @@
 streamlit
-openai
+PyMuPDF==1.24.9
+python-docx
+pillow
+pytesseract
+deep-translator
