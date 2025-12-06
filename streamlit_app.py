@@ -57,12 +57,16 @@ def extract_text_from_image(image):
 # ----------------------------
 def create_docx_with_formatting(elements):
     doc = Document()
+
     for element_type, *data in elements:
         if element_type == "text":
             text, font_name, font_size, is_bold, alignment = data
 
+            # FIX: Make text always safe
+            safe_text = str(text or "").strip()
+
             paragraph = doc.add_paragraph()
-            run = paragraph.add_run(text.strip())
+            run = paragraph.add_run(safe_text)
 
             if font_size:
                 run.font.size = Pt(font_size)
